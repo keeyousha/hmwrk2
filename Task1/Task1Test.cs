@@ -9,9 +9,9 @@ public class Tests
     [Test]
     public void StringLengthTest()
     {
-        That(StringLength("hello"), Is.EqualTo(5));
-        That(StringLength(""), Is.EqualTo(0));
-        That(StringLength(new String('x', 1000)), Is.EqualTo(1000));
+        That(StringLength("hello"), Is.EqualTo("Длина: 5"));
+        That(StringLength(""), Is.EqualTo("Длина: 0"));
+        That(StringLength(new String('x', 1000)), Is.EqualTo("Длина: 1000"));
     }
 
     [Test]

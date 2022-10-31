@@ -42,7 +42,7 @@ namespace Task3
             if (s.Contains("abC")) return true;
             if (s.Contains("AbC")) return true;
 
-            return false;    
+            return false;
 
 
         }
@@ -57,15 +57,29 @@ namespace Task3
             for (int i = 0; i < s.Length; i++)
             {
 
-                if (char.IsDigit(s[i]))
+                if (Char.IsDigit(s[i]))
                 {
 
-                    result += s[i];
+                    for (int j = i; j < s.Length - i; j++)
+                    {
 
+                        if (Char.IsDigit(s[j]))
+                        {
+
+                            result += s[j];
+
+                        }
+                        else return result;
+                    }
+
+                    break;
 
                 }
+
             }
-            return "";
+            return result;
+            //такой странный код потому что другая реализация с if else работает медленней на 1 миллисекунду
+
         }
 
         /*
@@ -74,12 +88,12 @@ namespace Task3
          */
         internal static string HideDigits(string s, string s1)
         {
-            throw new NotImplementedException();
+            return Regex.Replace(s, "[0 - 9]", s1);
         }
 
         public static void Main(string[] args)
         {
-            
+
         }
     }
 }

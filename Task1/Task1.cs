@@ -7,9 +7,9 @@
          * где NN — длина заданной строки. Например, если задана строка "hello",
          * то результатом должна быть строка "Длина: 5".
          */
-        internal static int StringLength(string s)
+        internal static string StringLength(string s)
         {
-            return s.Length;
+            return $"Длина: {Convert.ToString(s.Length)}";
         }
 
         /*
@@ -116,28 +116,33 @@
          */
         internal static int CalcDigits(string expr)
         {
-            expr.Insert(0, " ");
-            string temp;
+            char[] exprarr = expr.ToArray();
+
             int result = 0;
 
-            for (int i = 0; i < Enumerable.Count(expr) / 2; i += 2)
+            bool nop = false; // if true => '-', if false => '+'
+
+            for (int i = 0; i < expr.Length; i++)
             {
 
-                temp = expr.Substring(i, 2);
+                if (exprarr[i] == '+' || exprarr[i] == '-')
 
-                if (temp.Substring(0, 1).Equals(' ') || temp.Substring(0, 1).Equals('+')) // я пытался и оно не хочет работать
-                    result += (int)(Char.Parse(temp.Substring(1, 1)));
+                    if (exprarr[i] == '-')
+                        nop = true;
 
-                Console.WriteLine(result);
+                    else if (exprarr[i] == '+')
+                        nop = false;
 
-                if (temp.Substring(0, 1).Equals('-'))
-                    result -= (int)(Char.Parse(temp.Substring(1, 1)));
-
-                Console.WriteLine(result);
+                if (char.IsDigit(exprarr[i]))
+                {
+                    if (nop == true) result -= exprarr[i];
+                    if (nop == false) result += exprarr[i];
+                }
 
             }
 
             return result;
+
         }
 
         /*
@@ -145,17 +150,8 @@
          */
         internal static string ReplaceWithString(string s, string s1, string s2)
         {
-            for (int i = 0; i < s.Length - s1.Length; i++)
-            {
-
-                if (s.Substring(i, s1.Length).Equals(s1))
-                {
-                    s.Replace(s.Substring(i, s1.Length), s2); //тоже чёт не очень понятно
-                    return s;
-                }
-                    
-
-            }
+            int index1 = s.IndexOf(s1);
+            s = s.Remove(index1, s1.Length).Insert(index1, s2);
             return s;
         }
 

@@ -17,26 +17,14 @@ public class Tests
     [Test]
     public void TabulateSquaresTest()
     {
-        That(TabulateSquares(3), Is.EqualTo(
-@"1 1
-2 4
-3 9"));
+        That(TabulateSquares(3), Is.EqualTo("1  1\n2  4\n3  9"));
         That(TabulateSquares(4), Is.EqualTo(
 @"1  1
 2  4
 3  9
 4 16"));
         That(TabulateSquares(10), Is.EqualTo(
-@"1    1
-2    4
-3    9
-4   16
-5   25
-6   36
-7   49
-8   64
-9   81
-10 100"));
+"1  1\n2  4\n3  9\n4 16\n5 25\n6 36\n7 49\n8 64\n9 81\n10 100"));
         
     }
 }

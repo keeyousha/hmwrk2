@@ -14,19 +14,24 @@ namespace Task2
          * Задание 2.1. Дана непустая строка S и целое число N (> 0). Вернуть строку, содержащую символы
          * строки S, между которыми вставлено по N символов «*» (звездочка).
          */
-        internal static string FillWithAsterisks(string ss, int n)
+        internal static string FillWithAsterisks(string s, int n)
         {
-            StringBuilder s = new StringBuilder(ss);
 
-            StringBuilder dots = new StringBuilder().Append('*', n); //!
+            string result = "";
+            char[] sarr = s.ToCharArray();
+            string nstar = "";
 
-            for (int i = 0; i < ss.Length; i++)
+            for (int i = 0; i < n; i++) nstar = nstar + "*";
+
+            for (int i = 0; i < sarr.Length; i++)
             {
+                if (i + 1 == sarr.Length) result += sarr[i];
 
-                s.Insert(i, dots);
+                else result += sarr[i] + nstar;
 
             }
-            return s.ToString();
+
+            return result;
         }
 
         /*
@@ -52,7 +57,8 @@ namespace Task2
                 npow = i.ToString();
                 pow = Math.Pow(i, 2).ToString();
 
-                result = npow.PadLeft(1, ' ') + pow.PadRight(1, ' ');
+                result += npow.PadLeft(1, ' ') + " " + pow.PadLeft(2, ' ');
+                if (i < n) result += "\n";
 
             }
             return result;
